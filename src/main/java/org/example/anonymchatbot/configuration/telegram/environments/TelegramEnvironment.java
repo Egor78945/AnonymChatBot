@@ -1,8 +1,10 @@
 package org.example.anonymchatbot.configuration.telegram.environments;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+@Schema(title = "Детали для telegram-api", description = "Содержит нужные компоненты для инициализации работы telegram-api")
 @Configuration
 public class TelegramEnvironment {
     private final String TELEGRAM_BOT_NAME;

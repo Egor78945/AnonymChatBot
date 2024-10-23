@@ -1,10 +1,11 @@
 version: '3.7'
 services:
-  char-bot:
+  chat-bot:
     container_name: chat-bot
     build: .
     environment:
       - TELEGRAM_BOT_NAME=${TELEGRAM_BOT_NAME}
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - SERVER_PORT=${SERVER_PORT}
     ports:
       - "8080:8080"
