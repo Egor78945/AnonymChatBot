@@ -1,6 +1,11 @@
 spring:
   application:
     name: AnonymChatBot
+  data:
+    redis:
+      host: redis
+      port: ${REDIS_PORT}
+      timeout: ${REDIS_TIMEOUT}
 
 telegram:
   bot:

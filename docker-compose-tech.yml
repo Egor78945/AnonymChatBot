@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - ${REDIS_SERVER_PORT}:${REDIS_SERVER_PORT}
+    environment:
+      - REDIS_PORT=${REDIS_SERVER_PORT}
+      - REDIS_DATABASES=${REDIS_DATABASES}
+      - REDIS_TIMEOUT=${REDIS_TIMEOUT}
+    restart: always
