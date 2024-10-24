@@ -1,4 +1,4 @@
-package org.example.anonymchatbot.configuration.telegram.environments;
+package org.example.anonymchatbot.configuration.telegram.environment;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Value;
