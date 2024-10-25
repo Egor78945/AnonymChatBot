@@ -1,8 +1,10 @@
 package org.example.anonymchatbot.configuration.redis.environment;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+@Schema(title = "Детали для redis", description = "Содержит нужные компоненты для инициализации работы redis")
 @Configuration
 public class RedisEnvironment {
     private final String REDIS_HOST;

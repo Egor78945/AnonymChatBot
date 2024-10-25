@@ -1,7 +1,9 @@
 package org.example.anonymchatbot.model.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
+@Schema(title = "Диалог", description = "Класс, представляюий сессию диалога двух человек")
 @Entity
 @Table(name = "conversation")
 public class Dialog {

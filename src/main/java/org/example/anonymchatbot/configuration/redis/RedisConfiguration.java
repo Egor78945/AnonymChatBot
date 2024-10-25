@@ -1,6 +1,7 @@
 package org.example.anonymchatbot.configuration.redis;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import org.example.anonymchatbot.configuration.redis.environment.RedisEnvironment;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+@Schema(title = "Конфигурация для Redis", description = "Класс, настраивающий конфигурацию для redis")
 @Configuration
 @RequiredArgsConstructor
 public class RedisConfiguration {

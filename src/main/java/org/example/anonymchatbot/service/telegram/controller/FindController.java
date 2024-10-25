@@ -1,16 +1,16 @@
 package org.example.anonymchatbot.service.telegram.controller;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import org.example.anonymchatbot.model.entity.Dialog;
 import org.example.anonymchatbot.service.dialog.DialogService;
-import org.example.anonymchatbot.service.telegram.bot.AnonymChatBot;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Schema(title = "Контроллер для команды /find", description = "Класс, обрабатывающий запрос по адресу /find")
 @Service
 @RequiredArgsConstructor
 public class FindController implements MessageController {
