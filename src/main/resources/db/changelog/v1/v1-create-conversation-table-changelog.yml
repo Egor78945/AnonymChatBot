@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1-1
+      author: egor
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: conversation
+      changes:
+        - createTable:
+            tableName: conversation
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: first_companion
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: second_companion
+                  type: bigint
+                  constraints:
+                    nullable: true
+

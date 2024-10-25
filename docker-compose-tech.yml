@@ -9,3 +9,15 @@ services:
       - REDIS_DATABASES=${REDIS_DATABASES}
       - REDIS_TIMEOUT=${REDIS_TIMEOUT}
     restart: always
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRESQL_DATABASE_NAME}
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+    volumes:
+      - D:\postgres_datapart:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRESQL_SERVER_PORT}:${POSTGRESQL_SERVER_PORT}
