@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DialogRepository extends JpaRepository<Dialog, Long> {
-
+    boolean existsDialogByFirstCompanionAndSecondCompanion(Long firstCompanion, Long secondCompanion);
+    boolean existsDialogBySecondCompanion(Long secondCompanion);
 }

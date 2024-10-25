@@ -13,4 +13,12 @@ public class Dialog {
     private Long firstCompanion;
     @Column(name = "second_companion")
     private Long secondCompanion;
+
+    public Dialog(Long firstCompanion, Long secondCompanion) {
+        this.firstCompanion = firstCompanion;
+        this.secondCompanion = secondCompanion;
+    }
+
+    public Dialog() {
+    }
 }
