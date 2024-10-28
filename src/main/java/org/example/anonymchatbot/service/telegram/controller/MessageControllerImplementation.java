@@ -15,13 +15,14 @@ import java.util.Map;
 public class MessageControllerImplementation {
     private final Map<String, MessageController> messageController;
     private final FindController findController;
+    private final CommunicationController communicationController;
 
     public List<SendMessage> receive(Long chatId, String text) {
         List<SendMessage> result;
         if(text.startsWith("/")) {
             result = messageController.get(text).receive(chatId, text);
         } else {
-            result = List.of(new SendMessage(chatId.toString(), "developing..."));
+            result = communicationController.receive(chatId, text);
         }
         return result;
     }

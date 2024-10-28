@@ -2,8 +2,10 @@ package org.example.anonymchatbot.model.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Schema(title = "Диалог", description = "Класс, представляюий сессию диалога двух человек")
+@Data
 @Entity
 @Table(name = "conversation")
 public class Dialog {
