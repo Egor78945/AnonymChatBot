@@ -2,8 +2,10 @@ package org.example.anonymchatbot.repository;
 
 import org.example.anonymchatbot.model.entity.Dialog;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,4 +26,9 @@ public interface DialogRepository extends JpaRepository<Dialog, Long> {
 
     @Query("SELECT secondCompanion FROM Dialog WHERE firstCompanion=?1")
     Long findDialogSecondCompanionByFirstCompanion(Long firstCompanion);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Dialog WHERE firstCompanion=?1 OR secondCompanion=?1")
+    void removeDialogByCompanion(Long companion);
 }

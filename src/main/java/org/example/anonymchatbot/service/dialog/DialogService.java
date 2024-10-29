@@ -43,7 +43,13 @@ public class DialogService {
         return dialogRepository.findAllBySecondCompanionIsNull();
     }
 
+    @Operation(summary = "Получение второго собеседника", description = "Метод, возвращающий второго собеседника беседы, относительно первого")
     public Long getSecondCompanion(Long firstCompanion){
         return dialogRepository.findDialogSecondCompanionByFirstCompanion(firstCompanion);
+    }
+
+    @Operation(summary = "Удаление беседы", description = "Метод, удаляющий беседу, как активную, так и ожидающую")
+    public void abortDialog(Long companion){
+        dialogRepository.removeDialogByCompanion(companion);
     }
 }

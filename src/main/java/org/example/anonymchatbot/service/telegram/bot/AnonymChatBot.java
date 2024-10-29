@@ -5,11 +5,14 @@ import org.example.anonymchatbot.configuration.telegram.environment.TelegramEnvi
 import org.example.anonymchatbot.service.telegram.controller.MessageControllerImplementation;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.CopyMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Schema(title = "Анонимный чат - бот", description = "Класс, принимающий все сообщения, отправленные телеграмм-боту")
@@ -28,10 +31,9 @@ public class AnonymChatBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         Long chatId = message.getChatId();
-        String text = message.getText();
         try {
-            List<SendMessage> messages = messageControllerImplementation.receive(chatId, text);
-            for (SendMessage m : messages) {
+            List<BotApiMethod<? extends Serializable>> result = messageControllerImplementation.receive(message);
+            for (BotApiMethod<? extends Serializable> m : result) {
                 sendMessage(m);
             }
         } catch (Exception e) {
@@ -48,7 +50,7 @@ public class AnonymChatBot extends TelegramLongPollingBot {
         return telegramEnvironment.getTELEGRAM_BOT_NAME();
     }
 
-    public void sendMessage(SendMessage message) throws TelegramApiException {
+    public void sendMessage(BotApiMethod<? extends Serializable> message) throws TelegramApiException {
         sendApiMethod(message);
     }
 }

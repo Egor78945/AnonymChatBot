@@ -5,8 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.anonymchatbot.model.entity.Dialog;
 import org.example.anonymchatbot.service.dialog.DialogService;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +20,9 @@ public class FindController implements MessageController {
     private final DialogService dialogService;
 
     @Override
-    public List<SendMessage> receive(Long chatId, String text) {
-        List<SendMessage> result = new ArrayList<>();
+    public List<BotApiMethod<? extends Serializable>> receive(Message message) {
+        List<BotApiMethod<? extends Serializable>> result = new ArrayList<>();
+        Long chatId = message.getChatId();
         if(!dialogService.waitingForDialog(chatId)){
             if(!dialogService.inDialog(chatId)){
                 Dialog dialog = new Dialog(chatId, null);
