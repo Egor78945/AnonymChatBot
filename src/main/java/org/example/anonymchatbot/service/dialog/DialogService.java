@@ -52,4 +52,18 @@ public class DialogService {
     public void abortDialog(Long companion){
         dialogRepository.removeDialogByCompanion(companion);
     }
+
+    public List<Long> getExpiredDialogsBySecondCompanionIsNull(int hours, int limitHour){
+        return dialogRepository.findFirstCompanionWithExpiredSessionWithNullSecondCompanion(hours, limitHour);
+    }
+
+    public List<Long> getExpiredDialogsBySecondCompanionIsNotNull(int hours, int limitHour){
+        return dialogRepository.findFirstCompanionWithExpiredSessionWithNotNullSecondCompanion(hours, limitHour);
+    }
+
+    public void abortDialog(List<Long> companion){
+        dialogRepository.removeDialogByCompanion(companion);
+    }
+
+
 }

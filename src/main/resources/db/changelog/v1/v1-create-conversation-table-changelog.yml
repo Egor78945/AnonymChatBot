@@ -28,4 +28,9 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: true
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: false
 

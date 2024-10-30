@@ -31,4 +31,15 @@ public interface DialogRepository extends JpaRepository<Dialog, Long> {
     @Modifying
     @Query("DELETE FROM Dialog WHERE firstCompanion=?1 OR secondCompanion=?1")
     void removeDialogByCompanion(Long companion);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Dialog WHERE firstCompanion IN ?1 OR secondCompanion IN ?1")
+    void removeDialogByCompanion(List<Long> companion);
+
+    @Query("SELECT firstCompanion FROM Dialog WHERE ?1 - EXTRACT(HOUR FROM timestamp) >= ?2 AND secondCompanion IS NULL")
+    List<Long> findFirstCompanionWithExpiredSessionWithNullSecondCompanion(int hoursCountNow, int limitHour);
+
+    @Query("SELECT firstCompanion FROM Dialog WHERE ?1 - EXTRACT(HOUR FROM timestamp) >= ?2 AND secondCompanion IS NOT NULL")
+    List<Long> findFirstCompanionWithExpiredSessionWithNotNullSecondCompanion(int hoursCountNow, int limitHour);
 }

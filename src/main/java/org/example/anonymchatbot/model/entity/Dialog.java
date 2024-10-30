@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Schema(title = "Диалог", description = "Класс, представляюий сессию диалога двух человек")
 @Data
 @Entity
@@ -17,6 +19,8 @@ public class Dialog {
     private Long firstCompanion;
     @Column(name = "second_companion")
     private Long secondCompanion;
+    @Column(name = "date")
+    private Timestamp timestamp;
 
     public Dialog(Long firstCompanion, Long secondCompanion) {
         this.firstCompanion = firstCompanion;

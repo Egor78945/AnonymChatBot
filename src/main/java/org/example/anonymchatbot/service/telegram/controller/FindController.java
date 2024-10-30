@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,11 @@ public class FindController implements MessageController {
     public List<BotApiMethod<? extends Serializable>> receive(Message message) {
         List<BotApiMethod<? extends Serializable>> result = new ArrayList<>();
         Long chatId = message.getChatId();
-        if(!dialogService.waitingForDialog(chatId)){
-            if(!dialogService.inDialog(chatId)){
+        if (!dialogService.waitingForDialog(chatId)) {
+            if (!dialogService.inDialog(chatId)) {
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis() + 10_800_000);
                 Dialog dialog = new Dialog(chatId, null);
+                dialog.setTimestamp(timestamp);
                 dialogService.saveDialog(dialog);
                 result.add(new SendMessage(chatId.toString(), "You've been added to queue of dialogs, just wait a few seconds..."));
             } else {
